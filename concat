@@ -1,0 +1,38 @@
+#! /usr/bin/env bash
+# For example:
+#   ./concat csv1 . ouput.csv
+#  Will concatenate all CSV files in directory "csv1"
+#  and create a new file in the current fiectory named "output.csv"
+#  NOTE: It is assumed that every CSV file in the input directory 
+#  has a header. The the header is read once and put at the top of 
+#  the new csv file. The header is stripped out of every other file.
+input_dir=$1
+output_dir=$2
+fname=$3
+FILES="$1/*.csv"
+
+mkdir -p $output_dir
+
+#Grab header for CSV files
+for f in $FILES
+do
+	head -n 1 $f > "$output_dir/$fname"
+	break
+done
+
+for f in $FILES
+do
+	tail -n +2 $f >> "$output_dir/$fname"
+done
+
+####  REWRITE IT KINDA LIKE THIS:
+#GRAB_HEADER=TRUE
+#for f in $FILES
+#do
+#	if $GRAB_HEADER
+#		head $f > "$output_dir/$fname"
+#		GRAB_HEADER=FALSE
+#	else 
+#		tail -n +2 $f >> "$output_dir/$fname"
+#	fi
+#done

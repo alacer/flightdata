@@ -1,0 +1,13 @@
+#! /usr/bin/env python
+# Create a sequence of directories with particular base names
+
+import os
+
+def mk(directory):
+  if not os.path.exists(directory):
+    os.makedirs(directory)
+
+#Edit the numbers in the range function to control which directories are created.
+for i in range(1,9):
+  dirs = ["raw", "csv", "result", "raw"]
+  map(mk, map(lambda s: s + str(i), dirs))

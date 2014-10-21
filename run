@@ -1,0 +1,8 @@
+#! /usr/bin/env python
+
+#Run it all 
+import subprocess
+
+for i in range(1,10):
+  subprocess.call('nohup Rscript process_flight.R ' + str(i) + ' >> conversion' + str(i) + '.log &', shell=True)
+

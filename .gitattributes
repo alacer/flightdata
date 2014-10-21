@@ -1,0 +1,6 @@
+#Use UNIX style line endings
+* text=auto
+
+#Also, run these commands in a shell/command prompt
+# git config core.eol lf
+# git config core.autocrlf input
