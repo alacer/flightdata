@@ -4,44 +4,44 @@
 * CSV files representing one flight for one aircraft
 * Zip files that include the raw data, intermediate results and output CSV files
 * Zip file containing scripts used to process the data.
-  * concat - Bash script to join all CSV files in a single directory
-  * createdirs- Python create to create output directories for each flight
-  * matlab2df.R - R script to convert matlab file to an RData and CSV file
-  * package - Python script to concatenate a flight's worth or CSV files and then compress the output
-  * process_flight.R - R script that drives the conversion of individual files via matlab2df.R
-  * ttp.py - One of Alan's Python scripts
-  * ttt.py - Another of Alan's Python scripts	
-  * processing_choices.docx - A Word document. Discussion of how to process large amount of data
+ * concat - Bash script to join all CSV files in a single directory
+ * createdirs- Python create to create output directories for each flight
+ * matlab2df.R - R script to convert matlab file to an RData and CSV file
+ * package - Python script to concatenate a flight's worth or CSV files and then compress the output
+ * process_flight.R - R script that drives the conversion of individual files via matlab2df.R
+ * ttp.py - One of Alan's Python scripts
+ * ttt.py - Another of Alan's Python scripts	
+ * processing_choices.docx - A Word document. Discussion of how to process large amount of data
   
 ###Source Data
 * The NASA DASH link site hosts information about many different planes.
-  * Each plane is identified by a three digit number.
-  * The ID is a partially anonymized tail number.
-  * The IDs range from 652-687. That is 36 different aircraft.
-  * Here is a link to the data: https://c3.nasa.gov/dashlink/members/4/resources/?type=ds
+ * Each plane is identified by a three digit number.
+ * The ID is a partially anonymized tail number.
+ * The IDs range from 652-687. That is 36 different aircraft.
+ * Here is a link to the data: https://c3.nasa.gov/dashlink/members/4/resources/?type=ds
 * Flights
-  * For each aircraft, there is a zip file that represents a single flight.
-  * Each aircraft is represented by about 8 flights.
-  * Each zip file is about 800 MB in size.
-  * Each zip file contains about 650 individual matlab files.
+ * For each aircraft, there is a zip file that represents a single flight.
+ * Each aircraft is represented by about 8 flights.
+ * Each zip file is about 800 MB in size.
+ * Each zip file contains about 650 individual matlab files.
 * Matlab data files
-  * Each matlab file consists of different sensor readings or variables that have been sampled at different rates.
-  * The names of the matlab files use a naming convention. 
+ * Each matlab file consists of different sensor readings or variables that have been sampled at different rates.
+ * The names of the matlab files use a naming convention. 
 * File names
-  * The file names are fixed length can be parsed by the number of characters. For example, if a file is named
-     “652200101092009.mat”, then:
+ * The file names are fixed length can be parsed by the number of characters. For example, if a file is named “652200101092009.mat”, then:
+
     * 652 = tail ID
     * 2001 = year
     * 01 = month
     * 09 = day
     * 20 = hour
     * 09 = min
-  * The dates and times are anonymized and are not relevant except for ordering the data.
+ * The dates and times are anonymized and are not relevant except for ordering the data.
 * Source
-    * Bryan Matthews, the data set’s curator, has posted an FAQ about the data
-    * https://c3.nasa.gov/dashlink/resources/901/
+  * Bryan Matthews, the data set’s curator, has posted an FAQ about the data
+  * https://c3.nasa.gov/dashlink/resources/901/
  
- ### Processing Steps
+### Processing Steps
 * All zip files were decompressed into their own directory: raw1, raw2, … raw9
 * Each matlab file was imported into R as a data frame.
 * The maximum sampling rate in the file was determined. Sampling rates ranged from ¼ to 16 samples per second. This was determined for the first zip files, but range of other zip files is unknown.
@@ -58,7 +58,7 @@
 * The uncompressed amount of data to represent entire aircraft’s data as CSV files is about 600 GB. It should compress down to about 21 GB. 
 * Represented as binary RData files, a single flight can be represented in only 1 GB. 
 
-##Warnings
+###Warnings
 * The TIME.SERIES variable cannot be used to order the records. All measurements for a given flight have the same timestamp. However, the row order of the data is significant; subsequent observations occur later in time.
 * If two different zip files have two different maximum sampling rates, then the respective output files do not represent the same time series. That is, the amount of time represented by a single record in a file with a max sampling rate of 16 would be one-half the amount of time represented by a single record from a file where the max sampling rate was 32. 
 * Base R does everything by copy-- cbind does not append one data frame to another; it creates a new data frame and copies the other data frames into it. This is a memory intensive operation. God help you if you ask R to cbind 650 RData files together.
