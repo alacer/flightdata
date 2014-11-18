@@ -214,5 +214,3 @@ In LMOD: the selection could be heading, instrument landing, capture, or follow 
  * WS-WIND_SPEED
  * WSHR-WINDSHEAR_WARNING
  * TIME.SERIES
- * 
- * 
