@@ -1,3 +1,13 @@
+# Source this file to define a the function matlab2df
+# This function will convert a MATLAB file of  
+# NASA flight data to an R data frame.
+#
+# INPUTS: Name of file to be converted. 
+#   Example: "687200109140804.mat"
+# OUTPUT: Return an R data frame.
+#
+# 3-10 minutes are required to convert a .mat file.
+
 matlab2df <- function(filename) {
   #Unbugger MATLAB data
   # install.packages('R.matlab')
