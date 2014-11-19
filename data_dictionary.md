@@ -7,9 +7,9 @@
   * Here is a link to the data: https://c3.nasa.gov/dashlink/members/4/resources/?type=ds
 
 ###Known Anomalies
-+------------+------+--------------------------------------------+---------------------+
+
 |    Date    | Tail |                   Event                    |        File         |
-+------------+------+--------------------------------------------+---------------------+
+|------------|------|--------------------------------------------|---------------------|
 | 4/17/2002  |  660 | Engine Low Margin                          | 660200204172034.mat |
 | 5/31/2002  |  661 | Engine Won't Maintain Idle                 | 661200205310644.mat |
 | 7/17/2002  |  661 | Engine Slow Light Off                      | 661200207170742.mat |
@@ -19,7 +19,6 @@
 | 3/12/2003  |  681 | Hydraulic leak                             | 681200303120524.mat |
 | 6/3/2002   |  656 | Engine Won't Start                         | 656200206031558.mat |
 | 4/8/2002   |  658 | Engine Over-Temp                           | 658200204081423.mat |
-+------------+------+--------------------------------------------+---------------------+
 
 ### Variables
  * Per Bryan Matthews, there is no authoritative description for the variables. 
